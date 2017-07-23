@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 public class CommonItem extends Item {
 
@@ -7,7 +7,7 @@ public class CommonItem extends Item {
 	}
 
 	@Override
-	void updateQuality() {
+	public  void updateQuality() {
 		if (getQuality() > 0) {
 			decrementQuality();
 		}

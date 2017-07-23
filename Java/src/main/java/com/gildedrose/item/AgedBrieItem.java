@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 public class AgedBrieItem extends Item {
 
@@ -7,7 +7,7 @@ public class AgedBrieItem extends Item {
 	}
 	
 	@Override
-	void updateQuality() {
+	public void updateQuality() {
 		if (hasQualityLessThenMax()) {
 			incrementQuality();
 		}

@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 public class BackstagePassesItem extends Item {
 
@@ -7,7 +7,7 @@ public class BackstagePassesItem extends Item {
 	}
 
 	@Override
-	void updateQuality() {
+	public void updateQuality() {
 		if (hasQualityLessThenMax()) {
 			incrementQuality();
 			if (getSellIn() < 11) {

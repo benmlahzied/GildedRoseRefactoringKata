@@ -5,6 +5,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.gildedrose.item.AgedBrieItem;
+import com.gildedrose.item.BackstagePassesItem;
+import com.gildedrose.item.CommonItem;
+import com.gildedrose.item.ConjuredItem;
+import com.gildedrose.item.Item;
+import com.gildedrose.item.SulfurasItem;
+
 public class GildedRoseTest {
 
 	@Test
@@ -92,9 +99,10 @@ public class GildedRoseTest {
 	
 	@Test
 	public void should_not_quality_be_negative() {
-		Item[] items = new Item[] { new CommonItem(2, 0) };
+		Item[] items = new Item[] { new CommonItem(2, 0) , new ConjuredItem(10, 0)};
 		GildedRose app = updateQuality(items);
 		assertThat(app.items[0].getQuality()).isEqualTo(0);
+		assertThat(app.items[1].getQuality()).isEqualTo(0);
 	}
 
 	@Test
@@ -108,6 +116,13 @@ public class GildedRoseTest {
 		assertThat(app.items[1].getQuality()).isEqualTo(50);
 		assertThat(app.items[2].getQuality()).isEqualTo(50);
 		assertThat(app.items[3].getQuality()).isEqualTo(50);
+	}
+	
+	@Test
+	public void should_conjured_items_quality_decreases_twice_as_fast_as_normal_items(){
+		Item[] items = new Item[] { new ConjuredItem(10, 5) };
+		GildedRose app = updateQuality(items);
+		assertThat(app.items[0].getQuality()).isEqualTo(3);
 	}
 
 	private GildedRose updateQuality(Item[] items) {

@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 public abstract class Item {
 
@@ -51,7 +51,7 @@ public abstract class Item {
 		setQuality(getQuality() + 1);
 	}
 
-	abstract void updateQuality();
+	public abstract void updateQuality();
 
 	protected boolean hasQualityLessThenMax() {
 		return getQuality() < DEFAULT_MAXIMUM_QUALITY;

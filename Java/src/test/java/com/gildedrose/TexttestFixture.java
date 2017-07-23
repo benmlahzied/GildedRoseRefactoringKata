@@ -1,5 +1,11 @@
 package com.gildedrose;
 
+import com.gildedrose.item.AgedBrieItem;
+import com.gildedrose.item.BackstagePassesItem;
+import com.gildedrose.item.CommonItem;
+import com.gildedrose.item.Item;
+import com.gildedrose.item.SulfurasItem;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
