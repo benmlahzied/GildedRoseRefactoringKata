@@ -20,45 +20,57 @@ class GildedRose {
 	}
 
 	private void updateItemQuality(Item item) {
-		if (item.getName().equals(AGED_BRIE) || item.getName().equals(BACKSTAGE)) {
+		String name = item.getName();
+		if (name.equals(AGED_BRIE)) {
+			updateAgedBrieQuality(item);
+		} else if (name.equals(BACKSTAGE)) {
+			updateBackstagePassesQuality(item);
+		} else if (!name.equals(SULFURAS)) {
+			updateCommonItemsQuality(item);
+		}
+	}
+	
+	private void updateAgedBrieQuality(Item item) {
+		if (hasQualityLessThenMax(item)) {
+			item.incrementQuality();
+		}
+		item.decrementSellIn();
+		if (item.hasExpired()) {
 			if (hasQualityLessThenMax(item)) {
 				item.incrementQuality();
-
-				if (item.getName().equals(BACKSTAGE)) {
-					updateBackstageQuality(item);
-				}
-			}
-		} else if (item.getQuality() > 0 && !item.getName().equals(SULFURAS)) {
-				item.decrementQuality();
-		}
-
-		if (!item.getName().equals(SULFURAS)) {
-			item.decrementSellIn();
-		}
-
-		if (item.hasExpired()) {
-			if (item.getName().equals(AGED_BRIE)) {
-				if (hasQualityLessThenMax(item)) {
-					item.incrementQuality();
-				}
-			} else if (item.getName().equals(BACKSTAGE)) {
-				item.setQuality(0);
-			} else if (item.getQuality() > 0 && !item.getName().equals(SULFURAS)) {
-				item.decrementQuality();
 			}
 		}
 	}
 
-	private void updateBackstageQuality(Item item) {
-		if (item.getSellIn() < 11) {
-			if (hasQualityLessThenMax(item)) {
-				item.incrementQuality();
+	private void updateBackstagePassesQuality(Item item) {
+		if (hasQualityLessThenMax(item)) {
+			item.incrementQuality();
+			if (item.getSellIn() < 11) {
+				if (hasQualityLessThenMax(item)) {
+					item.incrementQuality();
+				}
+			}
+			
+			if (item.getSellIn() < 6) {
+				if (hasQualityLessThenMax(item)) {
+					item.incrementQuality();
+				}
 			}
 		}
-
-		if (item.getSellIn() < 6) {
-			if (hasQualityLessThenMax(item)) {
-				item.incrementQuality();
+		item.decrementSellIn();
+		if (item.hasExpired()) {
+			item.setQuality(0);
+		}
+	}
+	
+	private void updateCommonItemsQuality(Item item) {
+		if (item.getQuality() > 0) {
+			item.decrementQuality();
+		}
+		item.decrementSellIn();
+		if (item.hasExpired()) {
+			if (item.getQuality() > 0) {
+				item.decrementQuality();
 			}
 		}
 	}
