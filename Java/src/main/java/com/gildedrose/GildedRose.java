@@ -20,68 +20,50 @@ class GildedRose {
 	}
 
 	private void updateItemQuality(Item item) {
-		if (item.name.equals(AGED_BRIE) || item.name.equals(BACKSTAGE)) {
+		if (item.getName().equals(AGED_BRIE) || item.getName().equals(BACKSTAGE)) {
 			if (hasQualityLessThenMax(item)) {
-				incrementQuality(item);
+				item.incrementQuality();
 
-				if (item.name.equals(BACKSTAGE)) {
+				if (item.getName().equals(BACKSTAGE)) {
 					updateBackstageQuality(item);
 				}
 			}
-		} else {
-			if (item.quality > 0 && !item.name.equals(SULFURAS)) {
-				decrementQuality(item);
-			}
+		} else if (item.getQuality() > 0 && !item.getName().equals(SULFURAS)) {
+				item.decrementQuality();
 		}
 
-		if (!item.name.equals(SULFURAS)) {
-			decrementSellIn(item);
+		if (!item.getName().equals(SULFURAS)) {
+			item.decrementSellIn();
 		}
 
-		if (hasExpired(item)) {
-			if (item.name.equals(AGED_BRIE)) {
+		if (item.hasExpired()) {
+			if (item.getName().equals(AGED_BRIE)) {
 				if (hasQualityLessThenMax(item)) {
-					incrementQuality(item);
+					item.incrementQuality();
 				}
-			} else if (item.name.equals(BACKSTAGE)) {
-				item.quality = 0;
-			} else if (item.quality > 0 && !item.name.equals(SULFURAS)) {
-				decrementQuality(item);
+			} else if (item.getName().equals(BACKSTAGE)) {
+				item.setQuality(0);
+			} else if (item.getQuality() > 0 && !item.getName().equals(SULFURAS)) {
+				item.decrementQuality();
 			}
 		}
-	}
-
-	private boolean hasExpired(Item item) {
-		return item.sellIn < 0;
 	}
 
 	private void updateBackstageQuality(Item item) {
-		if (item.sellIn < 11) {
+		if (item.getSellIn() < 11) {
 			if (hasQualityLessThenMax(item)) {
-				incrementQuality(item);
+				item.incrementQuality();
 			}
 		}
 
-		if (item.sellIn < 6) {
+		if (item.getSellIn() < 6) {
 			if (hasQualityLessThenMax(item)) {
-				incrementQuality(item);
+				item.incrementQuality();
 			}
 		}
-	}
-
-	private int decrementQuality(Item item) {
-		return item.quality = item.quality - 1;
-	}
-
-	private int decrementSellIn(Item item) {
-		return item.sellIn = item.sellIn - 1;
-	}
-
-	private int incrementQuality(Item item) {
-		return item.quality = item.quality + 1;
 	}
 
 	private boolean hasQualityLessThenMax(Item item) {
-		return item.quality < MAXIMUM_QUALITY;
+		return item.getQuality() < MAXIMUM_QUALITY;
 	}
 }

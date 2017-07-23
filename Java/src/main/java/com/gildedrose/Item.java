@@ -2,20 +2,56 @@ package com.gildedrose;
 
 public class Item {
 
-    public String name;
+	private String name;
+	private int sellIn;
+	private int quality;
 
-    public int sellIn;
+	public Item(String name, int sellIn, int quality) {
+		this.name = name;
+		this.setSellIn(sellIn);
+		this.setQuality(quality);
+	}
 
-    public int quality;
+	@Override
+	public String toString() {
+		return this.getName() + ", " + this.getSellIn() + ", " + this.getQuality();
+	}
 
-    public Item(String name, int sellIn, int quality) {
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-    }
+	public String getName() {
+		return name;
+	}
 
-   @Override
-   public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
-    }
+	public int getSellIn() {
+		return sellIn;
+	}
+
+	public int setSellIn(int sellIn) {
+		this.sellIn = sellIn;
+		return sellIn;
+	}
+
+	public int getQuality() {
+		return quality;
+	}
+
+	public int setQuality(int quality) {
+		this.quality = quality;
+		return quality;
+	}
+
+	boolean hasExpired() {
+		return getSellIn() < 0;
+	}
+
+	void decrementQuality() {
+		setQuality(getQuality() - 1);
+	}
+
+	void decrementSellIn() {
+		setSellIn(getSellIn() - 1);
+	}
+
+	void incrementQuality() {
+		setQuality(getQuality() + 1);
+	}
 }
