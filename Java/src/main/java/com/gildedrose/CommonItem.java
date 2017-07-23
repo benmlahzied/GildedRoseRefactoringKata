@@ -2,8 +2,8 @@ package com.gildedrose;
 
 public class CommonItem extends Item {
 
-	public CommonItem(String name, int sellIn, int quality) {
-		super(name, sellIn, quality);
+	public CommonItem(int sellIn, int quality) {
+		super(sellIn, quality);
 	}
 
 	@Override

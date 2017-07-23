@@ -5,14 +5,14 @@ public class TexttestFixture {
         System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
-                new CommonItem("+5 Dexterity Vest", 10, 20), //
-                new AgedBrieItem("Aged Brie", 2, 0), //
-                new CommonItem("Elixir of the Mongoose", 5, 7), //
-                new SulfurasItem("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new SulfurasItem("Sulfuras, Hand of Ragnaros", -1, 80),
-                new BackstagePassesItem("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new BackstagePassesItem("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new BackstagePassesItem("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                new CommonItem(10, 20), //
+                new AgedBrieItem(2, 0), //
+                new CommonItem(5, 7), //
+                new SulfurasItem(0, 80), //
+                new SulfurasItem(-1, 80),
+                new BackstagePassesItem(15, 20),
+                new BackstagePassesItem(10, 49),
+                new BackstagePassesItem(5, 49),
                 // this conjured item does not work properly yet
 //                new Item("Conjured Mana Cake", 3, 6) 
                 };

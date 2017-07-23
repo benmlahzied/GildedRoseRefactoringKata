@@ -2,15 +2,12 @@ package com.gildedrose;
 
 public abstract class Item {
 
-	@SuppressWarnings("unused")
-	private String name;
 	private int sellIn;
 	private int quality;
 	
 	static final int DEFAULT_MAXIMUM_QUALITY = 50;
 
-	public Item(String name, int sellIn, int quality) {
-		this.name = name;
+	public Item(int sellIn, int quality) {
 		this.setSellIn(sellIn);
 		this.setQuality(quality);
 	}
