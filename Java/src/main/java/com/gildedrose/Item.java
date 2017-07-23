@@ -1,10 +1,13 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
+	@SuppressWarnings("unused")
 	private String name;
 	private int sellIn;
 	private int quality;
+	
+	static final int DEFAULT_MAXIMUM_QUALITY = 50;
 
 	public Item(String name, int sellIn, int quality) {
 		this.name = name;
@@ -14,11 +17,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return this.getName() + ", " + this.getSellIn() + ", " + this.getQuality();
-	}
-
-	public String getName() {
-		return name;
+		return this.getSellIn() + ", " + this.getQuality();
 	}
 
 	public int getSellIn() {
@@ -39,19 +38,25 @@ public class Item {
 		return quality;
 	}
 
-	boolean hasExpired() {
+	protected boolean hasExpired() {
 		return getSellIn() < 0;
 	}
 
-	void decrementQuality() {
+	protected void decrementQuality() {
 		setQuality(getQuality() - 1);
 	}
 
-	void decrementSellIn() {
+	protected void decrementSellIn() {
 		setSellIn(getSellIn() - 1);
 	}
 
-	void incrementQuality() {
+	protected void incrementQuality() {
 		setQuality(getQuality() + 1);
+	}
+
+	abstract void updateQuality();
+
+	protected boolean hasQualityLessThenMax() {
+		return getQuality() < DEFAULT_MAXIMUM_QUALITY;
 	}
 }
