@@ -11,6 +11,8 @@ public abstract class Item {
 		this.setSellIn(sellIn);
 		this.setQuality(quality);
 	}
+	
+	public abstract void updateQuality();
 
 	@Override
 	public String toString() {
@@ -21,7 +23,7 @@ public abstract class Item {
 		return sellIn;
 	}
 
-	protected int setSellIn(int sellIn) {
+	public int setSellIn(int sellIn) {
 		this.sellIn = sellIn;
 		return sellIn;
 	}
@@ -30,7 +32,7 @@ public abstract class Item {
 		return quality;
 	}
 
-	protected int setQuality(int quality) {
+	public int setQuality(int quality) {
 		this.quality = quality;
 		return quality;
 	}
@@ -38,20 +40,6 @@ public abstract class Item {
 	protected boolean hasExpired() {
 		return getSellIn() < 0;
 	}
-
-	protected void decrementQuality() {
-		setQuality(getQuality() - 1);
-	}
-
-	protected void decrementSellIn() {
-		setSellIn(getSellIn() - 1);
-	}
-
-	protected void incrementQuality() {
-		setQuality(getQuality() + 1);
-	}
-
-	public abstract void updateQuality();
 
 	protected boolean hasQualityLessThenMax() {
 		return getQuality() < DEFAULT_MAXIMUM_QUALITY;

@@ -1,5 +1,8 @@
 package com.gildedrose.item;
 
+import static com.gildedrose.util.ItemDataUtils.decrementSellIn;
+import static com.gildedrose.util.ItemDataUtils.incrementQuality;
+
 public class BackstagePassesItem extends Item {
 
 	public BackstagePassesItem(int sellIn, int quality) {
@@ -9,20 +12,20 @@ public class BackstagePassesItem extends Item {
 	@Override
 	public void updateQuality() {
 		if (hasQualityLessThenMax()) {
-			incrementQuality();
+			incrementQuality(this);
 			if (getSellIn() < 11) {
 				if (hasQualityLessThenMax()) {
-					incrementQuality();
+					incrementQuality(this);
 				}
 			}
 			
 			if (getSellIn() < 6) {
 				if (hasQualityLessThenMax()) {
-					incrementQuality();
+					incrementQuality(this);
 				}
 			}
 		}
-		decrementSellIn();
+		decrementSellIn(this);
 		if (hasExpired()) {
 			setQuality(0);
 		}

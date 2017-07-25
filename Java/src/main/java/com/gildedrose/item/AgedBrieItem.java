@@ -1,5 +1,8 @@
 package com.gildedrose.item;
 
+import static com.gildedrose.util.ItemDataUtils.decrementSellIn;
+import static com.gildedrose.util.ItemDataUtils.incrementQuality;
+
 public class AgedBrieItem extends Item {
 
 	public AgedBrieItem(int sellIn, int quality) {
@@ -9,12 +12,12 @@ public class AgedBrieItem extends Item {
 	@Override
 	public void updateQuality() {
 		if (hasQualityLessThenMax()) {
-			incrementQuality();
+			incrementQuality(this);
 		}
-		decrementSellIn();
+		decrementSellIn(this);
 		if (hasExpired()) {
 			if (hasQualityLessThenMax()) {
-				incrementQuality();
+				incrementQuality(this);
 			}
 		}
 	}
