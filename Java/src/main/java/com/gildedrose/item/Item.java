@@ -5,7 +5,7 @@ public abstract class Item {
 	private int sellIn;
 	private int quality;
 	
-	static final int DEFAULT_MAXIMUM_QUALITY = 50;
+	private static final int DEFAULT_MAXIMUM_QUALITY = 50;
 
 	public Item(int sellIn, int quality) {
 		this.setSellIn(sellIn);
@@ -21,7 +21,7 @@ public abstract class Item {
 		return sellIn;
 	}
 
-	public int setSellIn(int sellIn) {
+	protected int setSellIn(int sellIn) {
 		this.sellIn = sellIn;
 		return sellIn;
 	}
@@ -30,7 +30,7 @@ public abstract class Item {
 		return quality;
 	}
 
-	public int setQuality(int quality) {
+	protected int setQuality(int quality) {
 		this.quality = quality;
 		return quality;
 	}
